@@ -10,6 +10,7 @@ import {
   IonContent,
   IonGrid,
   IonHeader,
+  IonIcon,
   IonImg,
   IonItem,
   IonLabel,
@@ -17,17 +18,38 @@ import {
   IonPage,
   IonRow,
   IonText,
-  IonThumbnail,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import ExploreContainer from "../components/ExploreContainer";
 import "./Tab1.css";
+import { useEffect, useState } from "react";
 import { Chart, registerables } from "chart.js";
 import { Bar } from "react-chartjs-2";
 Chart.register(...registerables);
+import { Plugins } from '@capacitor/core';
+const { Geolocation } = Plugins;
 
 const Tab1: React.FC = () => {
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-maps-script',
+    googleMapsApiKey: 'AIzaSyCkrzq9dLe2aOlr07kuMLShbQDVDuIA_Fg',
+  });
+
+  const [map, setMap] = useState<google.maps.Map | null>(null);
+
+  useEffect(() => {
+    if (isLoaded && document.getElementById('map')) {
+      const mapOptions = {
+        center: { lat: 37.7749, lng: -122.4194 },
+        zoom: 12,
+      };
+      const map = new google.maps.Map(document.getElementById('map') as HTMLElement, mapOptions);
+      setMap(map);
+    }
+  }, [isLoaded]);
+
   const labels = ["Poli Umum", "Poli Gigi", "Poli Anak", "Ruang Tindakan"];
   const data = {
     labels,
@@ -55,10 +77,11 @@ const Tab1: React.FC = () => {
       },
     ],
   };
+
   return (
     <IonPage>
       <IonToolbar>
-        <IonTitle slot="start">Start / End Buttons</IonTitle>
+        <IonImg slot="start" src="/public/image/logoPuskesmas.png" />
         <IonButtons slot="end">
           <IonButton>Home</IonButton>
           <IonButton>Daftar Nakes</IonButton>
@@ -102,7 +125,7 @@ const Tab1: React.FC = () => {
                   </IonCol>
                   <IonCol size="3" className="ion-text-center">
                     <IonCard color="light">
-                    <br></br>
+                      <br></br>
                       <img
                         alt="Poli Gigi"
                         src="/image/poligigi.png"
@@ -118,7 +141,7 @@ const Tab1: React.FC = () => {
                   </IonCol>
                   <IonCol size="3" className="ion-text-center">
                     <IonCard color="light">
-                    <br></br>
+                      <br></br>
                       <img
                         alt="Poli Anak"
                         src="/image/polianak.png"
@@ -134,7 +157,7 @@ const Tab1: React.FC = () => {
                   </IonCol>
                   <IonCol size="3" className="ion-text-center">
                     <IonCard color="light">
-                    <br></br>
+                      <br></br>
                       <img
                         alt="Tindakan"
                         src="/image/tindakan.png"
@@ -182,6 +205,7 @@ const Tab1: React.FC = () => {
                   </IonList>
                 </IonCardContent>
               </IonCard>
+              <div id="map" style={{ width: '100%', height: '100vh' }} />
             </IonCol>
           </IonRow>
         </IonGrid>
