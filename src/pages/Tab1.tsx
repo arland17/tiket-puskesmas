@@ -20,13 +20,8 @@ import {
   IonText,
   IonTitle,
   IonToolbar,
-  IonButton,
-  IonButtons,
-  IonIcon,
-  IonAlert,
-  IonInput,
-  IonInputPasswordToggle
 } from "@ionic/react";
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import ExploreContainer from "../components/ExploreContainer";
 import "./Tab1.css";
 import { useEffect, useState } from "react";
@@ -85,6 +80,15 @@ const Tab1: React.FC = () => {
 
   return (
     <IonPage>
+      <IonToolbar>
+        <IonImg slot="start" src="/public/image/logoPuskesmas.png" />
+        <IonButtons slot="end">
+          <IonButton>Home</IonButton>
+          <IonButton>Daftar Nakes</IonButton>
+          <IonButton>Daftar</IonButton>
+          <IonButton>Login</IonButton>
+        </IonButtons>
+      </IonToolbar>
       <IonToolbar color="success">
         <IonText color="light">
           <h1 className="ion-text-center">Selamat Datang di Puskesmas Curug</h1>
