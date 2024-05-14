@@ -33,7 +33,7 @@ const Login: React.FC = () => {
               <IonCardTitle>Login Your Account</IonCardTitle>
             </IonCardHeader>
             <IonCardContent>
-              <h3>Welcome to TikeT App, Please login to continue</h3>
+              <h3>Welcome to TikeT App Puskesmas</h3>
               <div>
                 <h3>Don't have an account?
                   <IonText color="primary" style={{ cursor: 'pointer' }} onClick={goToRegisterPage}>
