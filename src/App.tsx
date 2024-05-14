@@ -71,7 +71,7 @@ const AppContent: React.FC = () => (
           <Register />
         </Route>
         <Route exact path="/">
-          <Redirect to="/tab1" />
+          <Redirect to="/login" />
         </Route>
       </IonRouterOutlet>
     </IonContent>
