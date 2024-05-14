@@ -18,7 +18,14 @@ import {
   IonThumbnail,
   IonTitle,
   IonToolbar,
+  IonButton,
+  IonButtons,
+  IonIcon,
+  IonAlert,
+  IonInput,
+  IonInputPasswordToggle
 } from "@ionic/react";
+import { eye } from 'ionicons/icons';
 import ExploreContainer from "../components/ExploreContainer";
 import "./Tab1.css";
 import { Chart, registerables } from "chart.js";
@@ -55,6 +62,34 @@ const Tab1: React.FC = () => {
   };
   return (
     <IonPage>
+      <IonToolbar>
+        <IonButtons slot="secondary">
+          <IonButton id  ="daftarButton" fill="solid">
+            Daftar
+          </IonButton>
+        </IonButtons>
+        <IonButtons slot="primary">
+          <IonButton id  ="loginButton" fill="solid">
+            Login
+          </IonButton>
+          <IonAlert
+            trigger="loginButton"
+            buttons={['OK']}
+            inputs={[
+              {
+                placeholder: 'Username',
+              },
+              {
+                placeholder: 'Password',
+                attributes: {
+                  maxlength: 8,
+                }, 
+              },
+            ]}
+          ></IonAlert>
+        </IonButtons>
+        <IonTitle>Solid Buttons</IonTitle>
+      </IonToolbar>
       <IonToolbar color="success">
         <IonText color="light">
           <h1 class="ion-text-center">Selamat Datang di Puskesmas Curug</h1>
