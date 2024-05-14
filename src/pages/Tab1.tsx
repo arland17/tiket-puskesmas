@@ -1,4 +1,6 @@
 import {
+  IonButton,
+  IonButtons,
   IonCard,
   IonCardContent,
   IonCardHeader,
@@ -55,9 +57,18 @@ const Tab1: React.FC = () => {
   };
   return (
     <IonPage>
+      <IonToolbar>
+        <IonTitle slot="start">Start / End Buttons</IonTitle>
+        <IonButtons slot="end">
+          <IonButton>Home</IonButton>
+          <IonButton>Daftar Nakes</IonButton>
+          <IonButton>Daftar</IonButton>
+          <IonButton>Login</IonButton>
+        </IonButtons>
+      </IonToolbar>
       <IonToolbar color="success">
         <IonText color="light">
-          <h1 class="ion-text-center">Selamat Datang di Puskesmas Curug</h1>
+          <h1 className="ion-text-center">Selamat Datang di Puskesmas Curug</h1>
         </IonText>
       </IonToolbar>
       <IonContent fullscreen>

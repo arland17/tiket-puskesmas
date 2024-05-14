@@ -55,7 +55,7 @@ const Tab2: React.FC = () => {
     <IonPage>
       <IonToolbar color="success">
         <IonText color="light">
-          <h1 class="ion-text-center">Selamat Datang di Puskesmas Curug</h1>
+          <h1 className="ion-text-center">Selamat Datang di Puskesmas Curug</h1>
         </IonText>
       </IonToolbar>
       <IonContent className="ion-padding" fullscreen>

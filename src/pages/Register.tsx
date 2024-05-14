@@ -47,8 +47,8 @@ const Register: React.FC = () => {
               <div>
               <h2>Sudah Mempunyai Akun?
                 <IonText color="primary" style={{ cursor: 'pointer' }} onClick={goToLoginPage}>
-           Login Akun
-        </IonText></h2>
+                    Login Akun</IonText>
+                    </h2>
               </div>
         <IonInput
           fill="outline"
@@ -83,7 +83,7 @@ const Register: React.FC = () => {
         />
         <IonInput
         fill="outline"
-          type="confirmpassword"
+          type="password"
           placeholder="Confirmpassword"
           value={confirmpassword}
           onIonChange={(e) => setConfirmpassword(e.detail.value!)}
