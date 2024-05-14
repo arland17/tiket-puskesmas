@@ -10,7 +10,6 @@ import {
   IonContent,
   IonGrid,
   IonHeader,
-  IonIcon,
   IonImg,
   IonItem,
   IonLabel,
@@ -20,11 +19,15 @@ import {
   IonText,
   IonTitle,
   IonToolbar,
+  IonModal,
+  IonInput,
+  IonItemDivider,
+  IonInputPasswordToggle,
 } from "@ionic/react";
+import { useState, useEffect } from "react";
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import ExploreContainer from "../components/ExploreContainer";
 import "./Tab1.css";
-import { useEffect, useState } from "react";
 import { Chart, registerables } from "chart.js";
 import { Bar } from "react-chartjs-2";
 Chart.register(...registerables);
@@ -38,6 +41,7 @@ const Tab1: React.FC = () => {
   });
 
   const [map, setMap] = useState<google.maps.Map | null>(null);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   useEffect(() => {
     if (isLoaded && document.getElementById('map')) {
@@ -78,6 +82,14 @@ const Tab1: React.FC = () => {
     ],
   };
 
+  const handleLoginClick = () => {
+    setShowLoginModal(true);
+  };
+
+  const handleModalClose = () => {
+    setShowLoginModal(false);
+  };
+
   return (
     <IonPage>
       <IonToolbar>
@@ -86,7 +98,7 @@ const Tab1: React.FC = () => {
           <IonButton>Home</IonButton>
           <IonButton>Daftar Nakes</IonButton>
           <IonButton>Daftar</IonButton>
-          <IonButton>Login</IonButton>
+          <IonButton onClick={handleLoginClick}>Login</IonButton>
         </IonButtons>
       </IonToolbar>
       <IonToolbar color="success">
@@ -209,6 +221,30 @@ const Tab1: React.FC = () => {
             </IonCol>
           </IonRow>
         </IonGrid>
+
+        <IonModal isOpen={showLoginModal} onDidDismiss={handleModalClose}>
+          <IonHeader>
+            <IonToolbar>
+              <IonTitle>Login</IonTitle>
+              <IonButtons slot="end">
+                <IonButton onClick={handleModalClose}>Close</IonButton>
+              </IonButtons>
+            </IonToolbar>
+          </IonHeader>
+          <IonContent>
+            <IonItem>
+              <IonLabel position="floating">Username</IonLabel>
+              <IonInput></IonInput>
+            </IonItem>
+            <IonItem>
+              <IonLabel position="floating">Password</IonLabel>
+              <IonInput type="password">
+                <IonInputPasswordToggle slot="end"></IonInputPasswordToggle>
+              </IonInput>
+            </IonItem>
+            <IonButton expand="full" onClick={handleModalClose}>Login</IonButton>
+          </IonContent>
+        </IonModal>
       </IonContent>
     </IonPage>
   );
